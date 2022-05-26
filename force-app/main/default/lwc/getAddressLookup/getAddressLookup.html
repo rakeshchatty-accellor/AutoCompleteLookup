@@ -1,0 +1,21 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <div>
+                <c-combobox-autocomplete label="Select Option" options={suggestionsData} placeholder="search an address"
+                    onselectoption={handleOptionChange} classes="slds-m-bottom_small" onchange={searchData}>
+                </c-combobox-autocomplete>
+            </div>
+
+            <template if:true={showPicklist}>
+                <lightning-dual-listbox class = "addressType" name="Address Type" label="Select Address Type" source-label="Available"
+                    selected-label="Selected" required options={options} onchange={handleChange}>
+                </lightning-dual-listbox>
+            </template>
+        </div>
+        <footer class="slds-card__footer">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+            <lightning-button variant="brand" label="Save" onclick={handleSave}></lightning-button>
+        </footer>
+    </article>
+</template>

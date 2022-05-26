@@ -1,0 +1,53 @@
+<template>
+	<lightning-card title="GetAddressAPI">
+		<div class="slds-p-around_medium">
+			<lightning-input type="text" value={searchValue} label="Enter Address" onchange={searchKeyword}></lightning-input>
+			<lightning-dual-listbox
+				name="Address Type" 
+				label="Select Address Type" 
+				source-label="Available"
+				selected-label="Selected" 
+				required 
+				options={options} 
+				onchange={handleChange}>
+			</lightning-dual-listbox>
+			<br />
+			<template if:true={showdata} >
+				<div class="slds-scrollable_y " style="height: 15rem;">
+					<lightning-radio-group 
+						class="slds-truncate slds-listbox__item slds-media slds-listbox__option slds-listbox__option_plain slds-media_small slds-m-around_x-small"
+						name="Select Address"
+						label="Select Address"
+						options={suggestionsData}
+						value={value}
+						disabled={isDisabled}
+						size="4"
+						required
+						type="radio"
+						onchange={handleRadioChange}>
+					</lightning-radio-group>
+
+				</div>
+			</template>
+			<!--<div>
+				<table class="slds-table slds-table_cell-buffer" border="0" cellspacing="0"
+					cellpadding="0" style="border-collapse:collapse;">
+					<thead>
+						<tr>
+							<th>Suggestions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<template for:each={suggestions} for:item="sug">
+							<tr key={sug.url} onclick={setAddress}>
+								<td>
+									<p data-id={sug.url}>{sug.address}</p>
+								</td>
+							</tr>
+						</template>
+					</tbody>
+				</table>
+			</div>-->
+		</div>
+	</lightning-card>
+</template>
