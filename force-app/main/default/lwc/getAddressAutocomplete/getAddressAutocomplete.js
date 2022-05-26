@@ -17,6 +17,7 @@ export default class GetAddressAutocomplete extends LightningElement {
     options=[];
 
     //search input
+    searchValue='';
     value;
     suggestions;
     isFocussed = false;
@@ -65,7 +66,6 @@ export default class GetAddressAutocomplete extends LightningElement {
         } else if (this.searchValue.length < 3 || this.searchValue == undefined) {
             this.suggestionsData = [];
             this.url = null;
-            //this.isFocussed = false;
         }
     }
     
