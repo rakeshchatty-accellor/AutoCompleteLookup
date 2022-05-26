@@ -24,7 +24,6 @@ export default class GetAddressAutocomplete extends LightningElement {
     suggestionsData = [];
     url;
 
-
     // On Load get type of address to update
     connectedCallback() {
         getTypeOfAddress({
@@ -87,14 +86,14 @@ export default class GetAddressAutocomplete extends LightningElement {
                 addressFields: this.selectedAddressTypes
             })
             .then(result => {
-                this.suggestionsData = null;
+                this.suggestionsData = [];
                 this.searchValue = null;
 
                 getRecordNotifyChange([{ recordId: this.recordId }]);
                 this.showNotification('Address upadted sucessfully', 'success')
             })
             .catch(error => {
-                this.suggestionsData = null;
+                this.suggestionsData = [];
                 this.showNotification(error.body.message, 'error')
             });
         }
@@ -116,11 +115,11 @@ export default class GetAddressAutocomplete extends LightningElement {
         return dropdownClasses;
     }
 
-    get showFooter() {
+    get isDisabled() {
         if (this.url != null && (this.selectedAddressTypes.length > 0 || !this.showPicklist)) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
