@@ -17,14 +17,13 @@ export default class GetAddressAutocomplete extends LightningElement {
     options=[];
 
     //search input
-    searchValue='';
-    value;
+    searchValue;
     suggestions;
     isFocussed = false;
     suggestionsData = [];
     url;
 
-    // On Load get type of address to update
+    // On Load get type of address picklist values
     connectedCallback() {
         getTypeOfAddress({
             recordId: this.recordId
@@ -73,7 +72,7 @@ export default class GetAddressAutocomplete extends LightningElement {
     }
 
     handleSelectOption(event) {
-        this.value = event.currentTarget.dataset.label;
+        this.searchValue = event.currentTarget.dataset.label;
         this.url = event.currentTarget.dataset.value;
         this.isFocussed = false;
     }
@@ -88,7 +87,6 @@ export default class GetAddressAutocomplete extends LightningElement {
             .then(result => {
                 this.suggestionsData = [];
                 this.searchValue = null;
-
                 getRecordNotifyChange([{ recordId: this.recordId }]);
                 this.showNotification('Address upadted sucessfully', 'success')
             })
@@ -98,7 +96,7 @@ export default class GetAddressAutocomplete extends LightningElement {
             });
         }
     }
-
+    //On change of Address type Multi-select picklist
     handleChange(event) {
         this.selectedAddressTypes = event.detail.value;
     }

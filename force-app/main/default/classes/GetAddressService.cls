@@ -95,7 +95,7 @@ public class GetAddressService {
                 lead.Longitude = response.Longitude;
                 UPDATE lead;
             } else {
-                throw new AuraHandledException('Unsupported Object'); // Should be moved to custom label or find existing label
+                throw new AuraHandledException(Label.MsgUnsupportedObjectAddressLookUp);
             }
         } catch (ApiException e) {
             throw new AuraHandledException(e.getMessage());
